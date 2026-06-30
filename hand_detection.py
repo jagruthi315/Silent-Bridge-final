@@ -23,7 +23,12 @@ while True:
     )
 
     # Process frame with MediaPipe
-    results = mp_hands.Hands().process(rgb_frame)
+    hands = mp_hands.Hands(
+    max_num_hands=2,
+    min_detection_confidence=0.7,
+    min_tracking_confidence=0.7
+)
+    results = hands.process(rgb_frame)
 
     # If hand detected
     if results.multi_hand_landmarks:
