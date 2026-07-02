@@ -23,7 +23,8 @@ X_train, X_test, y_train, y_test = train_test_split(
     X,
     y,
     test_size=0.2,
-    random_state=42
+    random_state=42,
+     stratify=y
 )
 
 print("Training samples:", len(X_train))
@@ -33,9 +34,10 @@ print("Testing samples:", len(X_test))
 # model = RandomForestClassifier()
 
 model = RandomForestClassifier(
-    n_estimators=300,
+    n_estimators=500,
     random_state=42,
-    n_jobs=-1
+    n_jobs=-1,
+    min_samples_leaf=1
 )
 
 # Train model
@@ -56,3 +58,4 @@ with open("gesture_model.pkl", "wb") as f:
 
 print("Model saved ✅")
 print(X.shape)
+print(df["target"].value_counts().sort_index())
